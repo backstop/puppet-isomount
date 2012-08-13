@@ -18,7 +18,7 @@ class isomount (
 
 		file {
 			"${isomount::path}/.iso/${name}":
-				ensure => exists;
+				ensure => present;
 			"${isomount::path}/${name}":
 				ensure => directory;
 		}	
