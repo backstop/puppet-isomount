@@ -1,6 +1,6 @@
 class isomount (
 	$path = '/var/cache/isomount',
-)
+) {
 
 	file { [ $path, "${path}/.iso" ]:
 		ensure => directory,
