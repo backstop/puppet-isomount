@@ -27,6 +27,7 @@ class isomount (
 			ensure  => mounted,
 			device  => "${isomount::path}/.iso/${name}",
 			fstype  => 'iso9660',
+			options => 'ro',
 			require => [ File["${isomount::path}/.iso/${name}"], File["${isomount::path}/${name}"] ],
 		}
 	}
