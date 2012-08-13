@@ -13,6 +13,7 @@ class isomount (
 			path    => [ '/bin', '/usr/bin' ],
 			creates => "${isomount::path}/.iso/${name}",
 			require => File["${isomount::path}/.iso"],
+			timeout => 0,
 		}
 
 		file {
