@@ -12,6 +12,7 @@ class isomount (
 		exec { "wget ${url} -qO ${isomount::path}/.iso/${name}":
 			path    => [ '/bin', '/usr/bin' ],
 			creates => "${isomount::path}/.iso/${name}",
+			require => File["${isomount::path}/.iso"],
 		}
 
 		file {
