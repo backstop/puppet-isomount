@@ -18,9 +18,9 @@ class isomount (
 
 		file {
 			"/var/lib/isomount/.iso/${filename}":
-				ensure => exists,
+				ensure => exists;
 			"/var/lib/isomount/${filename}":
-				ensure => directory,
+				ensure => directory;
 		}	
 
 		mount { "/var/lib/isomount/${filename}":
