@@ -9,25 +9,23 @@ class isomount (
 	define iso (
 		$url
 	) {
-		$filename = basename($url)
-
-		exec { "wget ${url} -qO /var/lib/isomount/.iso/${filename}":
+		exec { "wget ${url} -qO /var/lib/isomount/.iso/${name}":
 			path    => [ '/bin', '/usr/bin' ],
-			creates => "/var/lib/isomount/.iso/${filename}",
+			creates => "/var/lib/isomount/.iso/${name}",
 		}
 
 		file {
-			"/var/lib/isomount/.iso/${filename}":
+			"/var/lib/isomount/.iso/${name}":
 				ensure => exists;
-			"/var/lib/isomount/${filename}":
+			"/var/lib/isomount/${name}":
 				ensure => directory;
 		}	
 
-		mount { "/var/lib/isomount/${filename}":
+		mount { "/var/lib/isomount/${name}":
 			ensure  => mounted,
-			device  => "/var/lib/isomount/.iso/${filename}",
+			device  => "/var/lib/isomount/.iso/${name}",
 			fstype  => 'iso9660',
-			require => [ File["/var/lib/isomount/.iso/${filename}"], File["/var/lib/isomount/${filename}"] ],
+			require => [ File["/var/lib/isomount/.iso/${name}"], File["/var/lib/isomount/${name}"] ],
 		}
 	}
 }
