@@ -6,7 +6,7 @@ class isomount (
 		ensure => directory,
 	}
 
-	define isomount (
+	define iso (
 		$url
 	) {
 		$filename = basename($url)
