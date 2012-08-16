@@ -16,6 +16,7 @@ class isomount (
 
 		download { "${isomount::path}/.iso/${name}":
 			url     => "${url}/${name}",
+			timeout => 0,
 			require => File["${isomount::path}/.iso"],
 		}
 
