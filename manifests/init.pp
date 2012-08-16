@@ -9,19 +9,15 @@ class isomount (
 	define iso (
 		$url
 	) {
-		exec { "wget ${url}/${name} -qO ${isomount::path}/.iso/${name}":
-			path    => [ '/bin', '/usr/bin' ],
-			creates => "${isomount::path}/.iso/${name}",
-			require => File["${isomount::path}/.iso"],
-			timeout => 0,
-		}
-
 		file {
-			"${isomount::path}/.iso/${name}":
-				ensure => present;
 			"${isomount::path}/${name}":
 				ensure => directory;
 		}	
+
+		download { "${isomount::path}/.iso/${name}":
+			url     => "${url}/${name}",
+			require => File["${isomount::path}/.iso"],
+		}
 
 		mount { "${isomount::path}/${name}":
 			ensure  => mounted,
